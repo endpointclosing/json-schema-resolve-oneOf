@@ -2,11 +2,11 @@ var expect = require('chai').expect;
 var should = require('chai').should();
 var refParser = require('json-schema-ref-parser');
 
-var resolveAllOf = require('../index.js');
+var resolveOneOf = require('../index.js');
 
 
 function resolve(obj){
-  return refParser.dereference(obj).then(spec => resolveAllOf(spec));
+  return refParser.dereference(obj).then(spec => resolveOneOf(spec));
 }
 
 describe('swagger.js resolver tests', function () {

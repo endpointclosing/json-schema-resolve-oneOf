@@ -1,2 +1,2 @@
-declare function resolveAllOf(inputSpec: any): any;
-export = resolveAllOf;
+declare function resolveOneOf(inputSpec: any): any;
+export = resolveOneOf;

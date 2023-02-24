@@ -1,13 +1,13 @@
 {
-  "name": "json-schema-resolve-allof",
+  "name": "json-schema-resolve-oneOf",
   "version": "1.5.0",
-  "description": "Resolves AllOf references in JSON schemas into composed models",
+  "description": "Resolves oneOf references in JSON schemas into composed models",
   "main": "index.js",
   "types": "index.d.ts",
   "typings": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "http://github.com/loganvolkers/json-schema-resolve-allof.git"
+    "url": "http://github.com/endpointclosing/json-schema-resolve-oneof.git"
   },
   "engine": {
     "node": ">= v6.3.1"
@@ -17,7 +17,7 @@
     "build": "tsc",
     "test": "tslint index.ts && mocha"
   },
-  "bin": "./bin/json-schema-resolve-allof",
+  "bin": "./bin/json-schema-resolve-oneOf",
   "keywords": [
     "jsonschema"
   ],
