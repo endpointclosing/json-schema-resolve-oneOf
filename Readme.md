@@ -1,14 +1,4 @@
-# DEPRECATED
-
-Try [json-schema-merge-allof](https://www.npmjs.com/package/json-schema-merge-allof) instead. It provides similar functionality to this libary, but does a merge that is semantic.
-
-I deprecated this library because it contains bugs about how allOfs get merged in non-compliant ways. The alternative libary ([json-schema-merge-allof](https://www.npmjs.com/package/json-schema-merge-allof)) is much more thorough about producing compliant schemas after merge.
-
-
-<details>
-<summary>old docs</summary>
-  
-# JSON Schema Resolve Allof
+# JSON Schema Resolve Oneof
 
 Some simple code to resolve the `allof` references in [JSON Schema](http://json-schema.org/)
 
@@ -21,11 +11,11 @@ npm install json-schema-resolve-allof --save
 Usage
 
 ```js 
-var resolveAllOf = require('json-schema-resolve-allof');
+var resolveOneOf = require('json-schema-resolve-allof');
 
-resolveAllOf({
+resolveOneOf({
   "type": "string",
-  "allOf": [{
+  "oneOf": [{
       "properties": {
         "lastName": {
           "type": "string"
@@ -62,7 +52,7 @@ resolveAllOf({
 
 For example,
 ```
-echo '{"allOf": [{"type": "object"}, {"additionalProperties": false}]}' | json-schema-resolve-allof
+echo '{"oneOf": [{"type": "object"}, {"additionalProperties": false}]}' | json-schema-resolve-allof
 ```
 
 will return

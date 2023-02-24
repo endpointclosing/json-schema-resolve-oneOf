@@ -1,5 +1,5 @@
 {
-  "name": "json-schema-resolve-oneOf",
+  "name": "@endpoint/json-schema-resolve-oneof",
   "version": "1.5.0",
   "description": "Resolves oneOf references in JSON schemas into composed models",
   "main": "index.js",
@@ -7,7 +7,7 @@
   "typings": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "http://github.com/endpointclosing/json-schema-resolve-oneof.git"
+    "url": "git+ssh://git@github.com/endpointclosing/json-schema-resolve-oneof.git"
   },
   "engine": {
     "node": ">= v6.3.1"
@@ -17,7 +17,9 @@
     "build": "tsc",
     "test": "tslint index.ts && mocha"
   },
-  "bin": "./bin/json-schema-resolve-oneOf",
+  "bin": {
+    "json-schema-resolve-oneOf": "bin/json-schema-resolve-oneOf"
+  },
   "keywords": [
     "jsonschema"
   ],
@@ -39,5 +41,12 @@
     "tslint-config-standard": "^7.0.0",
     "tslint-sonarts": "^1.4.0",
     "typescript": "^2.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/endpointclosing/json-schema-resolve-oneof/issues"
+  },
+  "homepage": "https://github.com/endpointclosing/json-schema-resolve-oneof#readme",
+  "directories": {
+    "test": "test"
   }
 }
