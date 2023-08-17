@@ -1,0 +1,38 @@
+
+name: Dependabot Pull Request Approve and Merge
+
+on: pull_request_target
+
+permissions:
+  contents: write
+  pull-requests: write  # Needed if in a private repository
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    # Checking the actor will prevent your Action run failing on non-Dependabot
+    # PRs but also ensures that it only does work for Dependabot PRs.
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      # This step will fail if there's no metadata so approval won't occur.
+      - name: Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1.6.0
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      # Here the PR gets approved.
+      - name: Approve a PR
+        if: ${{ steps.dependabot-metadata.outputs.update-type != 'version-update:semver-major' }}
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Sets PR to allow auto-merging for patch and minor updates if checks pass
+      - name: Enable auto-merge for Dependabot PRs
+        if: ${{ steps.dependabot-metadata.outputs.update-type != 'version-update:semver-major' }}
+        run: gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          # GitHub provides this variable in the CI env. You don't
+          # need to add anything to the secrets vault.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
