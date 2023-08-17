@@ -1,1 +1,5 @@
 * @endpointclosing/qe-code-review
+
+# No codeowners on these two files to allow dependabot to update. Re-add owners once dependabot can be added as a user
+package.json
+yarn.lock

@@ -1,0 +1,36 @@
+
+version: 2
+updates:
+
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    rebase-strategy: "disabled"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00" # utc
+
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    rebase-strategy: "auto"
+    open-pull-requests-limit: 10
+    registries:
+      - npm-npmjs
+    schedule:
+      interval: 'daily'
+      time: '09:00' # utc
+    ignore:
+      - dependency-name: "*"
+        # To keep PR's from clogging up ignore majors for now
+        update-types: ["version-update:semver-major"]
+        # For Cypress, ignore all updates
+      - dependency-name: "cypress"
+
+registries:
+  npm-npmjs:
+    type: npm-registry
+    url: https://registry.npmjs.org
+    token: ${{secrets.NPM_TOKEN_BOT}}
+
